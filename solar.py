@@ -5,17 +5,17 @@
 #
 
 import pygame
-from planet import Planet
-from planet import planetsDatas
+import random
+from planets import Planet
+from planets import planetsDatas
 
-import time
-
-height = 1000
-width = 1000
-
+height, width = 1000, 1000
 window = pygame.display.set_mode((width, height))
 
 planets = [Planet(planet) for planet in planetsDatas]
+
+for planet in planets:
+    planet.angle = random.randint(0,360)
 
 # 1 day a second = 0.01643835616
 # 1 hour a second = 0.01643835616/24 = 0.0006849315
@@ -27,23 +27,20 @@ speedMultiplier = 1
 clock = pygame.time.Clock()
 
 done = False
-while not done:
-    # --- Main event loop
-    for event in pygame.event.get():
+while not done: # main loop
+    for event in pygame.event.get(): # event loop
         if event.type == pygame.QUIT:
             pygame.quit()
             quit()
     
-    window.fill((0,0,0))
-    pygame.draw.circle(window, (255, 255, 0), (width//2, height//2), 40, 40)
+    window.fill((0,0,0)) #refill the screen
+    pygame.draw.circle(window, (255, 255, 0), (width//2, height//2), 40, 40) # draw the sun
 
-    for planet in planets:
-        planet.draw(window)
-        
     for planet in planets:
         planet.move(window,speedMultiplier)
-
-    #print(planets[0].angle)
+        planet.draw(window)
+        if planet.name == 'Earth':
+            print(planet.angle)
     
     pygame.display.update()
     clock.tick(60)
