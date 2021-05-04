@@ -39,8 +39,6 @@ while not done: # main loop
     for planet in planets:
         planet.move(window,speedMultiplier)
         planet.draw(window)
-        if planet.name == 'Earth':
-            print(planet.angle)
     
     pygame.display.update()
     clock.tick(60)
