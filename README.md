@@ -1,10 +1,10 @@
 # Fr - Pysteme solaire
 
-Voici une simulation du systeme solaire réaliser en python.
+Voici une simulation du systeme solaire réalisé en python.
 
-Les tailles des planètes ne sont pas à l'echelle pour des soucis de lisibilité (on ne verait seulement le soleil et les planets serait plus petit qu'un pixel).
+Les tailles des planètes ne sont pas à l'echelle pour des soucis de lisibiliter (on ne verrait seulement le soleil et les planètes seraient plus petites qu'un pixel).
 
-Les vitesses des planètes sont respectés (voir tableau après)
+Les vitesses des planètes sont respectées (voir tableau après)
 
 ## Explication algorithme des planètes
 
@@ -30,27 +30,27 @@ Les données d'une planète sont représentées par un dictionnaire python (trè
 | Parametre           | Type                  | Explication           |
 | :-------------------| :---------------------| :---------------------|
 | name | Chaine | Nom de la planète, purement informatif
-| color | Tuple trois entiers, 0-255 (code rvb) | Couleur de la planète, utiliser quand la planète est déssinée
+| color | Tuple trois entiers, 0-255 (code rvb) | Couleur de la planète, utilisé quand la planète est déssinée
 | width | Entier | Rayon de la planète, en pixel, utilisé quand la planète est déssinée
 | radius | Entier | Rayon du cercle de rotation de la planète, depuis le soleil, en pixel, utilisé quand la planète est déssinée
-| speed | Décimale | Vitesse de rotation de la planète, utilisé pour calculé l'angle suivant
+| speed | Décimale | Vitesse de rotation de la planète, utilisé pour calculer l'angle suivant
 | angle | Entier | Angle par default au debut de la simulation, en deg, 0 = en bas
 | hasRing | Booléen | si vrai, dessine un anneau autour de la planète 
 | moons | Liste | Liste des lunes de la planète
 
 | Parametre d'une lune | Type                  | Explication           |
 | :--------------------| :---------------------| :---------------------|
-| color | Tuple trois entiers, 0-255 (code rvb) | Couleur de la lune, utiliser quand la lune est déssinée
+| color | Tuple trois entiers, 0-255 (code rvb) | Couleur de la lune, utilisé quand la lune est déssinée
 | width | Entier | Rayon de la lune, en pixel, utilisé quand la lune est déssinée
 | radius | Entier | Rayon du cercle de rotation de la lune, depuis sa planète, en pixel, utilisé quand la lune est déssinée
-| speed | Décimale | Vitesse de rotation de la lune, utilisé pour calculé l'angle suivant
+| speed | Décimale | Vitesse de rotation de la lune, utilisé pour calculer l'angle suivant
 | angle | Entier | Angle par default au debut de la simulation, en deg, 0 = en bas
 
 <br>
 
-Pour respectée les differences de vitesse entre les planètes, j'ai réaliser un tableau avec les calcules réaliser.
+Pour respecter les differences de vitesse entre les planètes, j'ai réalisé un tableau avec les calcules réalisés.
 
-Globalement, je sais que la terre fait une révolution en 365j et j'ai choissis que la terre est la vitesse de base de mon programme, sa vitesse est donc de 1.
+Globalement, je sais que la terre fait une révolution en 365j et j'ai choissis la terre comme vitesse de base de mon programme, sa vitesse est donc de 1.
 
 Mercure, par exemple, réalise une révolution en 88j, je fait donc 365*1/88 = 365/88 = 4.15
 
@@ -78,12 +78,12 @@ Mercure, par exemple, réalise une révolution en 88j, je fait donc 365*1/88 = 3
 
 Source : [NASA](https://solarsystem.nasa.gov/planets)
 
-J'ai ensuite voulu rajouter les lunes, j'ai donc ajouter la Lune, puis j'ai découvert que mars avait 2 lunes, Phobos et Deimos. J'ai calculé leur vitesses avec la même formule.
-Puis, j'ai découvert que les autres planètes avait des dizaines de lunes. J'ai donc choisis de laissée la Lune, Phobos et Deimos et de ne pas en rajouté. Comme l'echelle ne peut pas etre respectée cela rendrait illisible la simulation.
+J'ai ensuite voulu rajouter les lunes, j'ai donc ajouté la Lune, puis j'ai découvert que mars avait 2 lunes, Phobos et Deimos. J'ai calculé leur vitesses avec la même formule.
+Puis, j'ai découvert que les autres planètes avait des dizaines de lunes. J'ai donc choisis de laisser la Lune, Phobos et Deimos et de ne pas en rajouter. Comme l'echelle ne peut pas etre respectée cela rendrait illisible la simulation.
 
 ### Fonctions
-La fonction 'move' va demander a la fonction 'getNextAngle' de calculer prochain l'angle de la planète.
-Avec cette angle, on indique que le X de la planète (utiliser dans la fonction 'draw') est égale à la moitiée de l'écran (point de référence) + le sinus de l'angle * radius
+La fonction 'move' va demander à la fonction 'getNextAngle' de calculer le prochain l'angle de la planète.
+Avec cette angle, on indique que le X de la planète (utilisé dans la fonction 'draw') est égale à la moitiée de l'écran (point de référence) + le sinus de l'angle * radius
 On indique que le Y de la planète est égale est égale à la moitiée de l'écran + le cosinus de l'angle * radius
 
 la fonction 'getNextAngle' ajoute la vitesse de la planète à son angle. Convertie cette angle en radians et renvoie les deux informations.
@@ -96,7 +96,7 @@ Pour les lunes c'est la même chose mais la planète est le point de référence
 ## Explication du programme
 
 Le fichier solar.py contient la boucle principale du programme.
-Le fichier planets.py contient les informations de chaque planètes ainsi que le classe pour créer un objet Planet.
+Le fichier planets.py contient les informations de chaque planètes ainsi que la classe pour créer un objet Planet.
 
 <br>
 
@@ -106,7 +106,7 @@ import random
 from planets import Planet
 from planets import planetsDatas
 ```
-Pygame est la bibliothèque graphique utilisé 
+Pygame est la bibliothèque graphique utilisé.
 J'importe ensuite la class Planet depuis planets.py ainsi que planetsData.
 
 <br>
@@ -124,7 +124,7 @@ planets = [Planet(planet) for planet in planetsDatas]
 for planet in planets:
     planet.angle = random.randint(0,360)
 ```
-Création d'une liste des objects Planet avec comme parametre les données de chaque planète. Applique un angle aléatoire pour ne pas commencer la simulation avec les planètes allignées.
+Création d'une liste des objects Planet avec comme paramètre les données de chaque planète. Applique un angle aléatoire pour ne pas commencer la simulation avec les planètes allignées.
 
 <br>
 
@@ -143,8 +143,8 @@ Après avoir déssiné le soleil, le programme boucles pour chaque planètes, le
 
 ## Problème du programme
  - L'echelle n'est pas bonne, pour des problème de visibilité
- - Les rotations des planètes n'est pas représenté. Principalement a cause de l'unicité des couleurs de chaque planètes.
- - Les positions des planètes est généré aléatoirement à chaque démarage, je n'est pas réussi à calculer leur position actuelle avec les formules utilisant leur axe de rotation et leur position a l'année 2000.
+ - Les rotations des planètes n'est pas représenté. Principalement à cause de l'unicité des couleurs de chaque planètes.
+ - Les positions des planètes est généré aléatoirement à chaque démarage, je n'est pas réussi à calculer leur position actuelle avec les formules utilisant leur axe de rotation et leur position à l'année 2000.
 
 <br>
 
